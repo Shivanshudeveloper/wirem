@@ -28,9 +28,63 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/index.bundle.css" />
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Title -->
   <title>Product</title>
+  <style>
+    .close {
+      color: #aaaaaa;
+      /* float: right;
+       */
+      align-self: flex-end;
+      align-content: flex-end;
+      align-items: flex-end;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      overflow: "visible";
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #f8f5f5;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%;
+    }
+  </style>
 </head>
 
 <body>
@@ -142,7 +196,8 @@
         <div class="container-fluid back back-background">
           <div class="row h-100">
             <div class="col-lg-6" data-aos="fade-in">
-              <figure class="background" style="background-image: url('assets/images/productR.jpg')"
+              <figure id="1" class="background"
+                style="background-image: url('assets/images/productR.jpg');overflow: hidden;"
                 data-top-top="transform: translateY(0%);" data-top-bottom="transform: translateY(10%);"></figure>
             </div>
           </div>
@@ -229,7 +284,8 @@
             </div>
           </div>
         </div>
-        <figure class="background background-overlay" style="background-image: url('assets/images/productS.jpg')">
+        <figure id="2" class="background background-overlay"
+          style="background-image: url('assets/images/productS.jpg')">
         </figure>
       </section>
 
@@ -242,227 +298,303 @@
         <div class="row align-items-center justify-content-between">
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="frame">
-              <img src="assets/images/productT.jpg" class="img-fluid" alt="">
+              <img id="3" src="assets/images/productT.jpg" class="img-fluid" alt="">
               <span></span>
             </div>
           </div>
           <div class="col-lg-6 col-xl-5">
             <h2 class="fw-bold">Get a working website via easy editing</h2>
-            <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis laborum animi non
-              ut, ratione eos id? Dolore repellendus illum facilis et dolorum officiis totam similique consequuntur,
-              magni
-              nobis obcaecati voluptatibus!</p>
+            <p class="text-secondary">Wire M is one stop solution for all your needs like electrical equipment’s,
+              wiring, CCTV related works. There are number of players out there who talks big lot of time but don’t
+              provide you service with utmost satisfaction. On the other hand, WireM delivers services at your
+              doorstep....<button id="bttn" data-toggle="modal" data-target="#exampleModalLong"
+                style="margin-left: 16px;" type="button" class="btn btn-info">View
+                More </button>
+
+            </p>
           </div>
         </div>
       </div>
     </section>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Wire M is one stop solution for all your needs like electrical equipment’s, wiring, CCTV related works. There
+          are number of players out there who talks big lot of time but don’t provide you service with utmost
+          satisfaction. On the other hand, WireM delivers services at your doorstep with maximum satisfaction and great
+          assistance even after service. At WireM, our core service is electrical and security systems. You will be
+          amazed to find almost every modern solution to your electrical needs. WireM is a perfect platform in which you
+          will be provided with all the necessities of everyday life.
+          We have been working in the market for the last four years as Secure Electricals. Now, We have come up with a
+          rebranded vertical WireM. A new & cutting-edge system for customers to solve every problem they face in daily
+          life. We are just a text away. You may contact us through our newly developed application, or just call or
+          text us and we will reach to your doorstep at your given time. We are also offering great discounts for new
+          customers and we encourage you to try our service once. Our major expertise is a nice modern electrical wiring
+          solution for home and commercial spaces. We are also exceptional when it comes to security system solutions.
+          We provides you with top-notch CCTV Surveillance and home automation systems. We also have exclusive tie-ups
+          with several brands like CP-Plus, Syska, Eveready etc. That enables us to deliver many physical items and raw
+          materials at a price you would not have even thought of.
+        </p>
+      </div>
+
+    </div>
+    <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+
+          <!-- <div class="modal-body">
+          ...
+        </div> -->
+    <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+  </div>
+  </div>
+  </div> -->
 
 
-    <!-- carousel -->
-    <section class="overflow-hidden">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-lg-6">
-            <span class="eyebrow mb-2 text-muted">Photo gallery</span>
-            <h2 class="fw-bold"><span class="d-lg-block">Your eyes can't lie.</span> Just look at this.</h2>
-          </div>
+  <!-- carousel -->
+  <section class="overflow-hidden">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-6">
+          <span class="eyebrow mb-2 text-muted">Photo gallery</span>
+          <h2 class="fw-bold"><span class="d-lg-block">Your eyes can't lie.</span> Just look at this.</h2>
         </div>
-        <div class="row">
-          <div class="col-md-10 col-lg-8" data-aos="fade-left">
-            <div class="carousel carousel-visible carousel-big-controls gallery-1">
-              <div data-carousel='{"mouseDrag": true, "gutter": 48, "loop": true, "items": 1, "nav": false}'>
-                <div>
-                  <figure class="media media-image equal-16-10"
-                    data-bp='{"imgSrc": "./assets/images/product-3.jpg" , "parentGalleryClass": "gallery-1" }'>
-                    <span style="background-image: url('assets/images/product-3.jpg')">
-                    </span>
-                  </figure>
-                </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-lg-8" data-aos="fade-left">
+          <div class="carousel carousel-visible carousel-big-controls gallery-1">
+            <div data-carousel='{"mouseDrag": true, "gutter": 48, "loop": true, "items": 1, "nav": false}'>
+              <div>
+                <figure class="media media-image equal-16-10"
+                  data-bp='{"imgSrc": "./assets/images/product-3.jpg" , "parentGalleryClass": "gallery-1" }'>
+                  <span style="background-image: url('assets/images/product-3.jpg')">
+                  </span>
+                </figure>
+              </div>
 
-                <div>
-                  <figure class="media media-image equal-16-10"
-                    data-bp='{"imgSrc": "./assets/images/product-4.jpg" , "parentGalleryClass": "gallery-1" }'>
-                    <span style="background-image: url('assets/images/product-4.jpg')">
-                    </span>
-                  </figure>
-                </div>
+              <div>
+                <figure class="media media-image equal-16-10"
+                  data-bp='{"imgSrc": "./assets/images/product-4.jpg" , "parentGalleryClass": "gallery-1" }'>
+                  <span style="background-image: url('assets/images/product-4.jpg')">
+                  </span>
+                </figure>
+              </div>
 
-                <div>
-                  <figure class="media media-image equal-16-10"
-                    data-bp='{"imgSrc": "./assets/images/product-5.jpg" , "parentGalleryClass": "gallery-1" }'>
-                    <span style="background-image: url('assets/images/product-5.jpg')">
-                    </span>
-                  </figure>
-                </div>
+              <div>
+                <figure class="media media-image equal-16-10"
+                  data-bp='{"imgSrc": "./assets/images/product-5.jpg" , "parentGalleryClass": "gallery-1" }'>
+                  <span style="background-image: url('assets/images/product-5.jpg')">
+                  </span>
+                </figure>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
 
-    <!-- reviews -->
-    <section class="py-20">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="row justify-content-center mb-5">
-              <div class="col-lg-8 text-center">
-                <span class="eyebrow mb-2 text-secondary">Customers love us</span>
-                <h2 class="fw-bold">Some words from our 1400+ customers.</h2>
-              </div>
+  <!-- reviews -->
+  <section class="py-20">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+              <span class="eyebrow mb-2 text-secondary">Customers love us</span>
+              <h2 class="fw-bold">Some words from our 1400+ customers.</h2>
             </div>
+          </div>
 
 
+          <div class="row">
+            <div class="col">
+              <ul class="list-unstyled border-bottom">
+                <li class="border-top py-5">
+                  <div class="d-flex flex-wrap justify-content-between">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                      <div class="d-flex align-items-end mb-1">
+                        <span class="fs-3 fw-bold lh-1 mb-0 me-1">5.0</span>
+                        <span class="text-muted">out of 5</span>
+                      </div>
+                      <ul class="rating text-yellow">
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-8">
+                      <p class="mb-2 lead text-secondary">“Lorem, ipsum dolor sit, amet <span
+                          class="text-black">consectetur adipisicing</span> elit. Modi ullam in
+                        distinctio placeat,
+                        repellendus similique quod illo alias enim, asperiores veritatis, repudiandae.”</p>
+                      <span class="eyebrow">Michael Doe</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="border-top py-5">
+                  <div class="d-flex flex-wrap justify-content-between">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                      <div class="d-flex align-items-end mb-1">
+                        <span class="fs-3 fw-bold lh-1 mb-0 me-1">5.0</span>
+                        <span class="text-muted">out of 5</span>
+                      </div>
+                      <ul class="rating text-yellow">
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-8">
+                      <p class="mb-2 lead text-secondary">“Lorem, ipsum dolor sit, amet <span
+                          class="text-black">consectetur adipisicing</span> elit. Modi ullam in
+                        distinctio placeat,
+                        repellendus similique quod illo alias enim, asperiores veritatis, repudiandae.”</p>
+                      <span class="eyebrow">Michael Doe</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- pricing -->
+  <section class="py-20 mx-xl-3 overflow-hidden bg-black inverted">
+    <div class="container foreground">
+      <div class="row justify-content-between">
+        <div class="col-lg-3 mb-4 mb-lg-0">
+          <h1 class="display-2 fw-bold lh-1 mb-1">$9.99</h1>
+          <span class="text-secondary">per month</span>
+        </div>
+        <div class="col-lg-8">
+          <h2 class="fw-bold">One year access to all designs listed on this page and all our templates.</h2>
+          <div class="row mt-5 mb-2">
+            <div class="col-md-6">
+              <ul class="list-group list-group-minimal">
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-check2 fs-5 me-2 text-yellow"></i>
+                  Variable and OpenType fonts</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-check2 fs-5 me-2 text-yellow"></i>
+                  Multi-team management</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group list-group-minimal list-group-sm">
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-check2 fs-5 me-2 text-yellow"></i>
+                  Pixel-level precision</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-check2 fs-5 me-2 text-yellow"></i>
+                  Reusable components</li>
+              </ul>
+            </div>
+          </div>
+          <a href="#" class="btn btn-yellow btn-lg btn-with-icon mt-4 rounded-pill">Buy Now <i
+              class="bi bi-arrow-up-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <img class="position-absolute top-0 start-0 translate-middle" src="assets/images/svg/pattern-lg-light.svg"
+      alt="Image">
+  </section>
+
+
+  <!-- footer -->
+  <footer class="py-15 py-xl-20">
+    <div class="container">
+      <div class="row g-4 g-lg-5 mb-10">
+        <div class="col-md-3 text-center text-md-start">
+          <!-- <a href="index-2.html" class="navbar-brand"><img src="assets/images/logo/logo-dark.svg" alt="Logo"></a>
+           -->
+          <h1 style="color: #000;"><a style="color: #000;" href="index-2.html ">WIREM</a></h1>
+        </div>
+        <div class="col-md-4 col-lg-5 text-center text-md-start">
+          <ul class="list-unstyled">
+            <li class="mb-1"><a href="about.html" class="text-reset text-primary-hover">About</a></li>
+            <li class="mb-1"><a href="contact.html" class="text-reset text-primary-hover">Contacts</a></li>
+            <li class="mb-1"><a href="sign-in.html" class="text-reset text-primary-hover">Login</a></li>
+            <!-- <li class="mb-1"><a href="#" class="text-reset text-primary-hover">changelog</a></li> -->
+            <!-- <li><a href="#" class="text-reset text-primary-hover">roadmap</a></li> -->
+          </ul>
+        </div>
+        <div class="col-md-5 col-lg-4">
+          <div class="grouped-inputs border p-1 rounded-pill">
             <div class="row">
               <div class="col">
-                <ul class="list-unstyled border-bottom">
-                  <li class="border-top py-5">
-                    <div class="d-flex flex-wrap justify-content-between">
-                      <div class="col-md-4 mb-4 mb-md-0">
-                        <div class="d-flex align-items-end mb-1">
-                          <span class="fs-3 fw-bold lh-1 mb-0 me-1">5.0</span>
-                          <span class="text-muted">out of 5</span>
-                        </div>
-                        <ul class="rating text-yellow">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                        </ul>
-                      </div>
-                      <div class="col-md-8">
-                        <p class="mb-2 lead text-secondary">“Lorem, ipsum dolor sit, amet <span
-                            class="text-black">consectetur adipisicing</span> elit. Modi ullam in
-                          distinctio placeat,
-                          repellendus similique quod illo alias enim, asperiores veritatis, repudiandae.”</p>
-                        <span class="eyebrow">Michael Doe</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="border-top py-5">
-                    <div class="d-flex flex-wrap justify-content-between">
-                      <div class="col-md-4 mb-4 mb-md-0">
-                        <div class="d-flex align-items-end mb-1">
-                          <span class="fs-3 fw-bold lh-1 mb-0 me-1">5.0</span>
-                          <span class="text-muted">out of 5</span>
-                        </div>
-                        <ul class="rating text-yellow">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                        </ul>
-                      </div>
-                      <div class="col-md-8">
-                        <p class="mb-2 lead text-secondary">“Lorem, ipsum dolor sit, amet <span
-                            class="text-black">consectetur adipisicing</span> elit. Modi ullam in
-                          distinctio placeat,
-                          repellendus similique quod illo alias enim, asperiores veritatis, repudiandae.”</p>
-                        <span class="eyebrow">Michael Doe</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <input type="text" class="form-control rounded-pill px-3" aria-label="Text input"
+                  placeholder="Your email">
+              </div>
+              <div class="col-auto">
+                <a href="#" class="btn btn-yellow btn-icon rounded-circle"><i class="bi bi-arrow-return-left"></i></a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-
-    <!-- pricing -->
-    <section class="py-20 mx-xl-3 overflow-hidden bg-black inverted">
-      <div class="container foreground">
-        <div class="row justify-content-between">
-          <div class="col-lg-3 mb-4 mb-lg-0">
-            <h1 class="display-2 fw-bold lh-1 mb-1">$9.99</h1>
-            <span class="text-secondary">per month</span>
-          </div>
-          <div class="col-lg-8">
-            <h2 class="fw-bold">One year access to all designs listed on this page and all our templates.</h2>
-            <div class="row mt-5 mb-2">
-              <div class="col-md-6">
-                <ul class="list-group list-group-minimal">
-                  <li class="list-group-item d-flex align-items-center"><i
-                      class="bi bi-check2 fs-5 me-2 text-yellow"></i> Variable and OpenType fonts</li>
-                  <li class="list-group-item d-flex align-items-center"><i
-                      class="bi bi-check2 fs-5 me-2 text-yellow"></i> Multi-team management</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <ul class="list-group list-group-minimal list-group-sm">
-                  <li class="list-group-item d-flex align-items-center"><i
-                      class="bi bi-check2 fs-5 me-2 text-yellow"></i> Pixel-level precision</li>
-                  <li class="list-group-item d-flex align-items-center"><i
-                      class="bi bi-check2 fs-5 me-2 text-yellow"></i> Reusable components</li>
-                </ul>
-              </div>
-            </div>
-            <a href="#" class="btn btn-yellow btn-lg btn-with-icon mt-4 rounded-pill">Buy Now <i
-                class="bi bi-arrow-up-right"></i></a>
-          </div>
+      <div class="row align-items-center g-1 g-lg-6 text-muted">
+        <div class="col-md-6 col-lg-5 order-lg-2 text-center text-md-start">
+          <ul class="list-inline small">
+            <li class="list-inline-item"><a href="#" class="text-reset text-primary-hover">facebook</a></li>
+            <li class="list-inline-item ms-1"><a href="#" class="text-reset text-primary-hover">twitter</a></li>
+            <li class="list-inline-item ms-1"><a href="#" class="text-reset text-primary-hover">linkedin</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-4 text-center text-md-end order-lg-3">
+          <span class="small">5th Avenue, New York USA 10255</span>
+        </div>
+        <div class="col-lg-3 order-lg-1 text-center text-md-start">
+          <p class="small">Copyrights © 2021</p>
         </div>
       </div>
-      <img class="position-absolute top-0 start-0 translate-middle" src="assets/images/svg/pattern-lg-light.svg"
-        alt="Image">
-    </section>
-
-
-    <!-- footer -->
-    <footer class="py-15 py-xl-20">
-      <div class="container">
-        <div class="row g-4 g-lg-5 mb-10">
-          <div class="col-md-3 text-center text-md-start">
-            <a href="index-2.html" class="navbar-brand"><img src="assets/images/logo/logo-dark.svg" alt="Logo"></a>
-          </div>
-          <div class="col-md-4 col-lg-5 text-center text-md-start">
-            <ul class="list-unstyled">
-              <li class="mb-1"><a href="#" class="text-reset text-primary-hover">documentation</a></li>
-              <li class="mb-1"><a href="#" class="text-reset text-primary-hover">components</a></li>
-              <li class="mb-1"><a href="#" class="text-reset text-primary-hover">blocks</a></li>
-              <li class="mb-1"><a href="#" class="text-reset text-primary-hover">changelog</a></li>
-              <li><a href="#" class="text-reset text-primary-hover">roadmap</a></li>
-            </ul>
-          </div>
-          <div class="col-md-5 col-lg-4">
-            <div class="grouped-inputs border p-1 rounded-pill">
-              <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control rounded-pill px-3" aria-label="Text input"
-                    placeholder="Your email">
-                </div>
-                <div class="col-auto">
-                  <a href="#" class="btn btn-yellow btn-icon rounded-circle"><i class="bi bi-arrow-return-left"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row align-items-center g-1 g-lg-6 text-muted">
-          <div class="col-md-6 col-lg-5 order-lg-2 text-center text-md-start">
-            <ul class="list-inline small">
-              <li class="list-inline-item"><a href="#" class="text-reset text-primary-hover">facebook</a></li>
-              <li class="list-inline-item ms-1"><a href="#" class="text-reset text-primary-hover">twitter</a></li>
-              <li class="list-inline-item ms-1"><a href="#" class="text-reset text-primary-hover">linkedin</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4 text-center text-md-end order-lg-3">
-            <span class="small">5th Avenue, New York USA 10255</span>
-          </div>
-          <div class="col-lg-3 order-lg-1 text-center text-md-start">
-            <p class="small">Copyrights © 2021</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    </div>
+  </footer>
   </div>
 
+  <script>
+    var m = document.getElementById("myModal");
+    var btn = document.getElementById("bttn");
+    console.log("jhjbn", m);
+    var z = document.getElementById("1");
+    var y = document.getElementById("2");
+    var x = document.getElementById("3");
+    btn.onclick = function () {
+      console.log("hjhbnj", m, m.style);
 
+      x.style.opacity = "0.1";
+      y.style.opacity = "0.6";
+      z.style.opacity = "0.1";
+      m.style.display = "block";
+    }
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function () {
+      m.style.display = "none";
+      x.style.opacity = "1";
+      y.style.opacity = "1";
+      z.style.opacity = "1";
+    }
+    window.onclick = function (event) {
+      if (event.target == m) {
+        m.style.display = "none";
+        x.style.opacity = "1";
+        y.style.opacity = "1";
+        z.style.opacity = "1";
+      }
+    }
+  </script>
   <!-- javascript -->
   <script src="assets/js/vendor.bundle.js"></script>
   <script src="assets/js/index.bundle.js"></script>
