@@ -37,12 +37,6 @@ const AccountProfile = (props) => {
           >
             {user.displayName}
           </Typography>
-          {/* <Typography
-            color="textSecondary"
-            variant="body1"
-          >
-            {`${moment().format('hh:mm A')} ${user.timezone}`}
-          </Typography> */}
         </Box>
       </CardContent>
       <Divider />

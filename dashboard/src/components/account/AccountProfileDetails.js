@@ -39,7 +39,6 @@ const AccountProfileDetails = (props) => {
     const {
       firstName, lastName, email, password
     } = values;
-
     const auth = getAuth();
     if (`${firstName} ${lastName}` !== user.displayName) {
       updateProfile(auth.currentUser, {
@@ -50,15 +49,10 @@ const AccountProfileDetails = (props) => {
       })
         .catch((error) => { setNotify({ success: false, message: error }); });
     }
-
     if (email !== user.email) {
-      let credential = null;
-      try {
-        credential = EmailAuthProvider.credential(
-          oldEmail, oldPassword
-        );
-      } catch (error) { setNotify({ success: false, message: error }); }
-      if (credential == null) return;
+      const credential = EmailAuthProvider.credential(
+        oldEmail, oldPassword
+      );
       reauthenticateWithCredential(user, credential).then(() => {
         updateEmail(auth.currentUser, email).then(() => {
           setNotify({ success: true, message: 'Email updated' });
@@ -70,13 +64,10 @@ const AccountProfileDetails = (props) => {
     }
 
     if (password !== '') {
-      let credential = null;
-      try {
-        credential = EmailAuthProvider.credential(
-          oldEmail, oldPassword
-        );
-      } catch (error) { setNotify({ success: false, message: error }); }
-      if (credential === null) return;
+      const credential = EmailAuthProvider.credential(
+        oldEmail, oldPassword
+      );
+
       reauthenticateWithCredential(user, credential).then(() => {
         updatePassword(auth.currentUser, password).then(() => {
           setNotify({ success: true, message: 'Password Changed' });
