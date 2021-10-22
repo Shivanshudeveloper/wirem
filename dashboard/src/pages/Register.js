@@ -24,10 +24,9 @@ const Register = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((results) => {
         const { user } = results;
-
+        const name = `${firstName} ${lastName}`;
         user.updateProfile({
-          firstName,
-          lastName
+          displayName: name
         });
         console.log(user);
         navigate('/login', { replace: true });

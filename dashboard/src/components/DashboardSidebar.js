@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -17,12 +17,8 @@ import {
   User as UserIcon,
   Users as UsersIcon
 } from 'react-feather';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import NavItem from './NavItem';
-
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  name: 'Katarina Smith'
-};
 
 const items = [
   {
@@ -54,7 +50,19 @@ const items = [
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
+  const [User, setUser] = useState({ displayName: '' });
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
 
+        setUser(user);
+      } else {
+        // ...
+      }
+    });
+  }, []);
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
@@ -79,7 +87,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       >
         <Avatar
           component={RouterLink}
-          src={user.avatar}
+          src=""
           sx={{
             cursor: 'pointer',
             width: 64,
@@ -91,13 +99,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           color="textPrimary"
           variant="h5"
         >
-          {user.name}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body2"
-        >
-          {user.jobTitle}
+          {User.displayName}
         </Typography>
       </Box>
       <Divider />
