@@ -28,11 +28,11 @@ const AccountProfileDetails = (props) => {
   const [changePassword, setChangePassword] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showDialog, setShowDialog] = useState({ dialog: false, isCancel: false });
-  const [oldPassword, setOldPassword] = useState(null);
-  const [oldEmail, setoldEmail] = useState(null);
+  const [oldPassword, setOldPassword] = useState('');
+  const [oldEmail, setoldEmail] = useState('');
   const [val, setVal] = useState({ values: null, setSubmitting: null });
   const [notify, setNotify] = useState({ success: false, message: '' });
-  console.log(oldPassword);
+
   const saveProfile = () => {
     const { values, setSubmitting } = val;
     if (showDialog.isCancel === true) { setSubmitting(false); return; }
@@ -47,19 +47,25 @@ const AccountProfileDetails = (props) => {
         setSubmitting(false);
         setNotify({ success: true, message: 'Profile updated' });
       })
-        .catch((error) => { setNotify({ success: false, message: error }); });
+        .catch((error) => { setNotify({ success: false, message: error.message.replace('Firebase', '') }); });
     }
     if (email !== user.email) {
       const credential = EmailAuthProvider.credential(
         oldEmail, oldPassword
       );
+
       reauthenticateWithCredential(user, credential).then(() => {
         updateEmail(auth.currentUser, email).then(() => {
           setNotify({ success: true, message: 'Email updated' });
           setSubmitting(false);
+          navigate('/login', { replace: true });
         }).catch((error) => {
-          setNotify({ success: false, message: error });
+          console.log(error);
+          setNotify({ success: false, message: error.message.replace('Firebase', '') });
         });
+      }).catch((error) => {
+        setNotify({ success: false, message: error.message.replace('Firebase', '') });
+        // ...
       });
     }
 
@@ -74,15 +80,14 @@ const AccountProfileDetails = (props) => {
           setChangePassword(false);
           setSubmitting(false);
         }).catch((error) => {
-          setNotify({ success: false, message: error });
+          setNotify({ success: false, message: error.message.replace('Firebase', '') });
         });
       }).catch((error) => {
-        setNotify({ success: false, message: error });
+        setNotify({ success: false, message: error.message.replace('Firebase', '') });
         // ...
       });
     }
     setSubmitting(false);
-    navigate('/app/account', { replace: true });
   };
   const handleClickOpen = (values, { setSubmitting }) => {
     setVal({ values, setSubmitting });
