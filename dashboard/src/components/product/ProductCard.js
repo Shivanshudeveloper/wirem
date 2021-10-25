@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import {
-  Avatar,
   Box,
   Card,
   CardContent,
@@ -14,7 +13,8 @@ import {
   DialogActions, styled, Dialog
 } from '@material-ui/core';
 import { useState } from 'react';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
+
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -51,9 +51,7 @@ BootstrapDialogTitle.propTypes = {
 };
 const ProductCard = ({ product, ...rest }) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const setOpenDialogHandler = (value) => {
-    setOpenDialog(value);
-  };
+
   return (
     <>
       <Card
@@ -71,20 +69,14 @@ const ProductCard = ({ product, ...rest }) => {
               justifyContent: 'center',
               pb: 3
             }}
-          >
-            <Avatar
-              alt="Product"
-              src={product.media}
-              variant="square"
-            />
-          </Box>
+          />
           <Typography
             align="center"
             color="textPrimary"
             gutterBottom
             variant="h4"
           >
-            {product.title}
+            {product.Name}
           </Typography>
           <Typography
             align="center"
@@ -96,34 +88,40 @@ const ProductCard = ({ product, ...rest }) => {
         </CardContent>
         <Box sx={{ flexGrow: 1 }} />
         <Divider />
+
+        <Grid
+          item
+          sx={{
+            alignItems: 'center',
+            display: 'flex'
+          }}
+        >
+          <LocalOfferIcon color="action" />
+
+          <Typography
+            color="textSecondary"
+            display="inline"
+            sx={{ pl: 1 }}
+            variant="body2"
+          >
+            <h3>
+              Amount&nbsp;&nbsp;&nbsp;
+              {product.amount}
+
+            </h3>
+          </Typography>
+        </Grid>
         <Box sx={{ p: 2 }}>
           <Grid
             container
-            spacing={2}
+            spacing={1}
             sx={{ justifyContent: 'space-between' }}
           >
-            <Grid
-              item
-              sx={{
-                alignItems: 'center',
-                display: 'flex'
-              }}
-            >
-              <AccessTimeIcon color="action" />
-              <Typography
-                color="textSecondary"
-                display="inline"
-                sx={{ pl: 1 }}
-                variant="body2"
-              >
-                Updated 2hr ago
-              </Typography>
-            </Grid>
 
             <Button
               color="primary"
               variant="contained"
-              onClick={() => setOpenDialogHandler(true)}
+              onClick={() => setOpenDialog(true)}
             >
               Continue with product
             </Button>
@@ -138,22 +136,14 @@ const ProductCard = ({ product, ...rest }) => {
         open={openDialog}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={() => setOpenDialog(false)}>
-          {product.title}
+          <h2>
+            {' '}
+            {product.Name}
+          </h2>
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
+            {product.description}
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -163,7 +153,7 @@ const ProductCard = ({ product, ...rest }) => {
           <Button
             color="primary"
             variant="contained"
-            onClick={() => setOpenDialogHandler(true)}
+            onClick={() => setOpenDialog(true)}
           >
             Continue
           </Button>
