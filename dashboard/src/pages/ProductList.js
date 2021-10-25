@@ -55,8 +55,8 @@ const ProductList = () => (
           />
         </Box>
       </Container>
+
     </Box>
   </>
 );
-
 export default ProductList;

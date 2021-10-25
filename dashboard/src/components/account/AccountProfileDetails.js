@@ -61,10 +61,10 @@ const AccountProfileDetails = (props) => {
           navigate('/login', { replace: true });
         }).catch((error) => {
           console.log(error);
-          setNotify({ success: false, message: error.message.replace('Firebase', '') });
+          setNotify({ success: false, message: error.message.replace('Firebase:', '') });
         });
       }).catch((error) => {
-        setNotify({ success: false, message: error.message.replace('Firebase', '') });
+        setNotify({ success: false, message: error.message.replace('Firebase:', '') });
         // ...
       });
     }
@@ -80,10 +80,10 @@ const AccountProfileDetails = (props) => {
           setChangePassword(false);
           setSubmitting(false);
         }).catch((error) => {
-          setNotify({ success: false, message: error.message.replace('Firebase', '') });
+          setNotify({ success: false, message: error.message.replace('Firebase:', '') });
         });
       }).catch((error) => {
-        setNotify({ success: false, message: error.message.replace('Firebase', '') });
+        setNotify({ success: false, message: error.message.replace('Firebase:', '') });
         // ...
       });
     }
@@ -334,22 +334,23 @@ const AccountProfileDetails = (props) => {
             <Button onClick={handleClose}>Done</Button>
           </DialogActions>
         </Dialog>
-        {notify.success ? (
-          <Alert severity="success">
-            <AlertTitle>Success</AlertTitle>
-            {notify.message}
-            {' '}
 
-          </Alert>
-        ) : null}
-        {' '}
-        {(notify.message !== '' && !notify.success) ? (
-          <Alert severity="warning">
-            <AlertTitle>Failed</AlertTitle>
-            {notify.message}
-          </Alert>
-        ) : null}
       </Container>
+      {notify.success ? (
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+          {notify.message}
+          {' '}
+
+        </Alert>
+      ) : null}
+      {' '}
+      {(notify.message !== '' && !notify.success) ? (
+        <Alert severity="warning">
+          <AlertTitle>Failed</AlertTitle>
+          {notify.message}
+        </Alert>
+      ) : null}
     </>
   );
 };
