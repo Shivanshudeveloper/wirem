@@ -89,35 +89,35 @@ const ProductCard = ({ product, ...rest }) => {
         <Box sx={{ flexGrow: 1 }} />
         <Divider />
 
-        <Grid
-          item
-          sx={{
-            alignItems: 'center',
-            display: 'flex'
-          }}
-        >
-          <LocalOfferIcon color="action" />
-
-          <Typography
-            color="textSecondary"
-            display="inline"
-            sx={{ pl: 1 }}
-            variant="body2"
-          >
-            <h3>
-              Amount&nbsp;&nbsp;&nbsp;
-              {product.amount}
-
-            </h3>
-          </Typography>
-        </Grid>
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 2, }}>
           <Grid
             container
             spacing={1}
             sx={{ justifyContent: 'space-between' }}
           >
 
+            <Grid
+              item
+              sx={{
+                alignItems: 'center',
+                display: 'flex'
+              }}
+            >
+              <LocalOfferIcon color="action" />
+
+              <Typography
+                color="textSecondary"
+                display="inline"
+                sx={{ pl: 1 }}
+                variant="body2"
+              >
+                <h3>
+                  Amount&nbsp;&nbsp;&nbsp;
+                  {product.amount}
+
+                </h3>
+              </Typography>
+            </Grid>
             <Button
               color="primary"
               variant="contained"

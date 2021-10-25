@@ -14,11 +14,13 @@ import ProductCard from '../components/product/ProductCard';
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [productsCount, setProductsCount] = useState(0);
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
       try {
-        const res = await fetch('http://localhost:1337/products');
+        const res = await fetch(`http://localhost:1337/products?_limit=6&_start=${6 * page - 6}`);
         const data = await res.json();
         setProducts(data);
         console.log(data);
@@ -29,12 +31,32 @@ const ProductList = () => {
       }
     };
     getProducts();
+  }, [page]);
+  useEffect(() => {
+    const getProductsCount = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('http://localhost:1337/products/count');
+        const data = await res.json();
+        setProductsCount(data);
+        console.log(data);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+      }
+    };
+    getProductsCount();
   }, []);
+  const handleChangePage = (event, newPage) => {
+    console.log(newPage);
+    setPage(newPage);
+  };
   if (loading) {
     return (
-      <div>
+      <>
         <CircularProgress size={14} />
-      </div>
+      </>
     );
   }
   return (
@@ -78,8 +100,10 @@ const ProductList = () => {
           >
             <Pagination
               color="primary"
-              count={1}
-              size="small"
+              count={Math.ceil(productsCount / 6)}
+              size="medium"
+              page={page}
+              onChange={handleChangePage}
             />
           </Box>
         </Container>
