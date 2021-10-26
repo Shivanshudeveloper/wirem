@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "details",
+  "info": {
+    "name": "Detail",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "email": {
+      "type": "email",
+      "unique": false,
+      "required": true
+    },
+    "productname": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

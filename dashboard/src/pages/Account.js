@@ -5,23 +5,14 @@ import {
   Grid
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import getUser from 'src/Firebase/getUser';
 import AccountProfile from '../components/account/AccountProfile';
 import AccountProfileDetails from '../components/account/AccountProfileDetails';
 
 const Account = () => {
   const [User, setUser] = useState({ displayName: '' });
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-
-        setUser(user);
-      } else {
-        // ...
-      }
-    });
+  useEffect(async () => {
+    setUser(await getUser());
   }, []);
 
   return (

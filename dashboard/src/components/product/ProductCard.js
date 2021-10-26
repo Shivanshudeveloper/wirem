@@ -10,10 +10,11 @@ import {
   DialogTitle,
   IconButton,
   DialogContent,
+  Snackbar,
   DialogActions, styled, Dialog
 } from '@material-ui/core';
 import { useState } from 'react';
-
+import CloseIcon from '@material-ui/icons/Close';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -45,13 +46,36 @@ const BootstrapDialogTitle = (props) => {
     </DialogTitle>
   );
 };
+
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 };
-const ProductCard = ({ product, ...rest }) => {
+const ProductCard = ({ product, user, ...rest }) => {
   const [openDialog, setOpenDialog] = useState(false);
-
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const postHandler = async () => {
+    try {
+      const res = await fetch('http://localhost:1337/details', {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: user.displayName,
+          email: user.email,
+          productname: product.Name,
+          amount: product.amount,
+          description: product.description
+        })
+      });
+      console.log(await res.json());
+    } catch (err) {
+      console.log(err);
+    }
+    setOpenDetailsDialog(false);
+  };
   return (
     <>
       <Card
@@ -153,19 +177,129 @@ const ProductCard = ({ product, ...rest }) => {
           <Button
             color="primary"
             variant="contained"
-            onClick={() => setOpenDialog(true)}
+            onClick={() => { setOpenDialog(false); setOpenDetailsDialog(true); }}
           >
             Continue
           </Button>
         </DialogActions>
 
       </BootstrapDialog>
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        ContentProps={{
+          sx: {
+            position: 'relative',
+            marginTop: '25%',
+            backgroundColor: 'white',
+            color: 'black',
+            display: 'flex',
+            justifySelf: 'start'
+          }
+        }}
+        open={openDetailsDialog}
+        autoHideDuration={1000}
+        onClose={() => {}}
+        message={(
+
+          <Box sx={{
+            p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center'
+          }}
+          >
+            <Grid
+              container
+              spacing={1}
+              sx={{ justifyContent: 'space-between' }}
+            >
+              <Typography gutterBottom>
+                <h3>
+                  {user.displayName}
+                </h3>
+              </Typography>
+              <Typography gutterBottom>
+                <h3>
+
+                  {user.email}
+
+                </h3>
+              </Typography>
+              <Grid
+                container
+                spacing={1}
+                sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+              >
+                <DialogContent dividers>
+                  <Typography gutterBottom>
+                    {product.Name}
+                  </Typography>
+                </DialogContent>
+                <DialogContent dividers>
+                  <Typography gutterBottom>
+                    {product.description}
+                  </Typography>
+                </DialogContent>
+              </Grid>
+              <Grid
+                item
+                sx={{
+                  alignItems: 'center',
+                  display: 'flex'
+                }}
+              >
+                <LocalOfferIcon color="action" />
+
+                <Typography
+                  color="black"
+                  display="inline"
+                  sx={{ pl: 1 }}
+                  variant="body2"
+                >
+                  <h3>
+                    Amount&nbsp;&nbsp;&nbsp;
+                    {product.amount}
+
+                  </h3>
+                </Typography>
+              </Grid>
+            </Grid>
+            <Button
+              sx={{ width: '50%' }}
+              color="primary"
+              variant="contained"
+              onClick={() => postHandler()}
+            >
+              Submit
+            </Button>
+          </Box>
+)}
+        action={(
+          <Box sx={{
+            p: 0, position: 'absolute', top: '0%', right: '0%'
+          }}
+          >
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={() => { setOpenDetailsDialog(false); }}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+
+          </Box>
+        )}
+      />
+
     </>
   );
 };
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
+  user: PropTypes.any.isRequired,
 
 };
 
