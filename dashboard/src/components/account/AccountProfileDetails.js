@@ -65,7 +65,6 @@ const AccountProfileDetails = (props) => {
         });
       }).catch((error) => {
         setNotify({ success: false, message: error.message.replace('Firebase:', '') });
-        // ...
       });
     }
 
@@ -84,7 +83,6 @@ const AccountProfileDetails = (props) => {
         });
       }).catch((error) => {
         setNotify({ success: false, message: error.message.replace('Firebase:', '') });
-        // ...
       });
     }
     setSubmitting(false);
@@ -314,10 +312,9 @@ const AccountProfileDetails = (props) => {
           </DialogContent>
           <DialogContent>
             <DialogContentText>
-              Enter your old password
+              Enter your Password
             </DialogContentText>
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               label=""

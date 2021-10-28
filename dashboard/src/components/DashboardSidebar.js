@@ -12,10 +12,8 @@ import {
 } from '@material-ui/core';
 import {
   BarChart as BarChartIcon,
-  Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
-  User as UserIcon,
-  Users as UsersIcon
+  User as UserIcon
 } from 'react-feather';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import NavItem from './NavItem';
@@ -27,11 +25,6 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/app/customers',
-    icon: UsersIcon,
-    title: 'Customers'
-  },
-  {
     href: '/app/products',
     icon: ShoppingBagIcon,
     title: 'Products'
@@ -41,16 +34,11 @@ const items = [
     icon: UserIcon,
     title: 'Account'
   },
-  {
-    href: '/app/settings',
-    icon: SettingsIcon,
-    title: 'Settings'
-  }
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
-  const [User, setUser] = useState({ displayName: '' });
+  const [User, setUser] = useState({ displayName: '', photoURL: '' });
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -87,7 +75,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       >
         <Avatar
           component={RouterLink}
-          src=""
+          src={User.photoURL}
           sx={{
             cursor: 'pointer',
             width: 64,
@@ -95,10 +83,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           }}
           to="/app/account"
         />
-        <Typography
-          color="textPrimary"
-          variant="h5"
-        >
+        <Typography color="textPrimary" variant="h5">
           {User.displayName}
         </Typography>
       </Box>
@@ -162,8 +147,7 @@ DashboardSidebar.propTypes = {
 };
 
 DashboardSidebar.defaultProps = {
-  onMobileClose: () => {
-  },
+  onMobileClose: () => {},
   openMobile: false
 };
 

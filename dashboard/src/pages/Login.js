@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import auth from 'src/Firebase';
+import { auth } from 'src/Firebase';
 import {
   Box,
   Button,
@@ -18,7 +18,17 @@ const Login = () => {
   const [showPopper, setShowPopper] = useState(false);
   const login = (values, { setErrors, setSubmitting }) => {
     const { password, email } = values;
-
+    fetch('http://localhost:1337/auth/local', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        password,
+        identifier: email
+      })
+    }).then((res) => res.json())
+      .then((res) => { console.log(res); localStorage.setItem('strapi', res.jwt); });
     auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         auth.onAuthStateChanged((user) => {

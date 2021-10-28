@@ -2,12 +2,29 @@
   "routes": [
     {
       "method": "GET",
+      "path": "/details/me",
+      "handler": "detail.findMe",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/details/me/count",
+      "handler": "detail.findMeCount",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/details",
       "handler": "detail.find",
       "config": {
         "policies": []
       }
     },
+
     {
       "method": "GET",
       "path": "/details/count",
@@ -26,12 +43,21 @@
     },
     {
       "method": "POST",
+      "path": "/details/me",
+      "handler": "detail.createMe",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/details",
       "handler": "detail.create",
       "config": {
         "policies": []
       }
     },
+
     {
       "method": "PUT",
       "path": "/details/:id",

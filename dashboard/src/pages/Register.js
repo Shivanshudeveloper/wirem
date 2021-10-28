@@ -12,10 +12,11 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-import auth from '../Firebase/index';
+import { auth } from '../Firebase/index';
 
 const Register = () => {
   const navigate = useNavigate();
+
   const register = (values, { setErrors, setSubmitting }) => {
     const {
       firstName, lastName, password, email
@@ -29,7 +30,18 @@ const Register = () => {
           displayName: name
         });
         console.log(user);
-        navigate('/login', { replace: true });
+        fetch('http://localhost:1337/auth/local/register', {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            password,
+            email,
+            username: name
+          })
+        }).then((res) => res.json())
+          .then((res) => { console.log(res); localStorage.setItem('strapi', res.jwt); navigate('/login', { replace: true }); });
       })
       .catch((err) => { setSubmitting(false); setErrors({ password: (err.message).replace('Firebase:', '') }); });
   };

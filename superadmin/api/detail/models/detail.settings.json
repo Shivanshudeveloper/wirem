@@ -32,6 +32,15 @@
     "description": {
       "type": "text",
       "required": true
+    },
+    "Status": {
+      "type": "string",
+      "required": true,
+      "default": "Pending"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

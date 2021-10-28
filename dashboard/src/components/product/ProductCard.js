@@ -56,11 +56,13 @@ const ProductCard = ({ product, user, ...rest }) => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const postHandler = async () => {
     try {
-      const res = await fetch('http://localhost:1337/details', {
+      const strapi = localStorage.getItem('strapi');
+      const res = await fetch('http://localhost:1337/details/me', {
         method: 'post',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${strapi}`
         },
         body: JSON.stringify({
           name: user.displayName,

@@ -12,25 +12,28 @@ import getUser from 'src/Firebase/getUser';
 import ProductListToolbar from '../components/product/ProductListToolbar';
 import ProductCard from '../components/product/ProductCard';
 
-const LIMIT = 6;
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [productsCount, setProductsCount] = useState(0);
+  const [productsCount, setProductsCount] = useState(1);
   const [User, setUser] = useState({ displayName: '' });
+  const [LIMIT] = useState(6);
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await fetch(`http://localhost:1337/products?_limit=${LIMIT}&_start=${LIMIT * page - LIMIT}`);
-        const data = await res.json();
-        setProducts(data);
+    const getProducts = () => {
+      const strapi = window.localStorage.getItem('strapi');
+      console.log(`http://localhost:1337/products?_limit=${LIMIT}&_start=${LIMIT * page - LIMIT}`);
+      fetch(`http://localhost:1337/products?_limit=${LIMIT}&_start=${LIMIT * page - LIMIT}`, {
+        headers: {
+          Authorization: `Bearer ${strapi}`
+        }
+      }).then((res) => res.json()).then((data) => {
+        if (data) setProducts(data);
+        console.log(data);
 
         setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        console.log(err);
-      }
+      }).catch((err) => console.log(err));
+
       setLoading(false);
     };
 
@@ -38,17 +41,20 @@ const ProductList = () => {
   }, [page]);
   useEffect(() => {
     const getProductsCount = async () => {
+      const strapi = window.localStorage.getItem('strapi');
+      console.log(window.localStorage.getItem('strapi'), 'sacdsacfdsacdsacsacsacsacsasacx');
       setUser(await getUser());
       setLoading(true);
-      try {
-        const res = await fetch('http://localhost:1337/products/count');
-        const data = await res.json();
-        setProductsCount(data);
+
+      fetch('http://localhost:1337/products/count', {
+        headers: {
+          Authorization: `Bearer ${strapi}`
+        }
+      }).then((res) => res.json()).then((res) => {
+        setProductsCount(res);
+        console.log(res);
         setLoading(false);
-      } catch (err) {
-        console.log(err);
-        setLoading(false);
-      }
+      }).catch(() => { console.log(''); setLoading(false); });
     };
 
     getProductsCount();
@@ -100,8 +106,8 @@ const ProductList = () => {
 
               {products.map((product) => (
                 <Grid
-                  item
                   key={product.id}
+                  item
                   lg={4}
                   md={6}
                   xs={12}
