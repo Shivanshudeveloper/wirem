@@ -12,7 +12,7 @@ import getUser from 'src/Firebase/getUser';
 import DashboardListToolbar from 'src/components/dashboard/DashboardListToolbar';
 
 const Dashboard = () => {
-  const [products, setProducts] = useState([{}]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [User, setUser] = useState({ displayName: '' });

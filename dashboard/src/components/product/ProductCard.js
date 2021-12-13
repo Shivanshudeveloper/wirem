@@ -11,11 +11,12 @@ import {
   IconButton,
   DialogContent,
   Snackbar,
-  DialogActions, styled, Dialog
+  DialogActions, styled, Dialog,
 } from '@material-ui/core';
 import { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import { Link } from 'react-router-dom';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -54,30 +55,7 @@ BootstrapDialogTitle.propTypes = {
 const ProductCard = ({ product, user, ...rest }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
-  const postHandler = async () => {
-    try {
-      const strapi = localStorage.getItem('strapi');
-      const res = await fetch('http://localhost:1337/details/me', {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${strapi}`
-        },
-        body: JSON.stringify({
-          name: user.displayName,
-          email: user.email,
-          productname: product.Name,
-          amount: product.amount,
-          description: product.description
-        })
-      });
-      console.log(await res.json());
-    } catch (err) {
-      console.log(err);
-    }
-    setOpenDetailsDialog(false);
-  };
+
   return (
     <>
       <Card
@@ -267,14 +245,22 @@ const ProductCard = ({ product, user, ...rest }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Button
-              sx={{ width: '50%' }}
-              color="primary"
-              variant="contained"
-              onClick={() => postHandler()}
+            <Link
+              style={{ textDecoration: 'none' }}
+              state={{
+                name: user.displayName,
+                email: user.email,
+                productname: product.Name,
+                otp: Math.floor(100000 + Math.random() * 900000),
+                amount: product.amount,
+                description: product.description
+              }}
+              to="/payment"
             >
-              Submit
-            </Button>
+              <Button variant="contained">
+                Submit
+              </Button>
+            </Link>
           </Box>
 )}
         action={(

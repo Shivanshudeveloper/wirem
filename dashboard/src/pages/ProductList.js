@@ -22,7 +22,6 @@ const ProductList = () => {
   useEffect(() => {
     const getProducts = () => {
       const strapi = window.localStorage.getItem('strapi');
-      console.log(`http://localhost:1337/products?_limit=${LIMIT}&_start=${LIMIT * page - LIMIT}`);
       fetch(`http://localhost:1337/products?_limit=${LIMIT}&_start=${LIMIT * page - LIMIT}`, {
         headers: {
           Authorization: `Bearer ${strapi}`

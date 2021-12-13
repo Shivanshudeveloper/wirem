@@ -52,6 +52,31 @@ const DashboardCard = ({ product, user, ...rest }) => {
           <Typography align="center" color="textPrimary" variant="body1">
             {details.description}
           </Typography>
+          <Box sx={{
+            display: 'flex', flexDirection: 'row', justifyContent: 'space-arround', backgroundColor: 'gray', width: '40%', border: '1px solid gray', borderRadius: 1, boxShadow: 2, p: 0.5, mt: 2
+          }}
+          >
+            <Typography
+              align="center"
+              color="textPrimary"
+              gutterBottom
+              variant="h4"
+              sx={{ color: 'white', fontWeight: 800 }}
+            >
+              OTP:
+            </Typography>
+            <Typography
+              sx={{ ml: 2, color: 'white' }}
+              align="center"
+              color="textPrimary"
+              gutterBottom
+              variant="h4"
+            >
+
+              {details.otp}
+            </Typography>
+
+          </Box>
         </CardContent>
         <Box sx={{ flexGrow: 1 }} />
         <Divider />

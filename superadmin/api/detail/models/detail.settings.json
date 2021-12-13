@@ -29,6 +29,9 @@
       "type": "string",
       "required": true
     },
+    "otp": {
+      "type": "number"
+    },
     "description": {
       "type": "text",
       "required": true
