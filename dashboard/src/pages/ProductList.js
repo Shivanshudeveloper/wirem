@@ -124,7 +124,6 @@ const ProductList = () => {
               pt: 3
             }}
           >
-
             <Pagination
               color="primary"
               count={Math.ceil(productsCount / LIMIT)}

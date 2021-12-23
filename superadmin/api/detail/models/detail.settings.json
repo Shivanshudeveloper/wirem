@@ -44,6 +44,10 @@
     "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "paymentUrl":{
+      "type":"string",
+      "default":""
     }
   }
 }

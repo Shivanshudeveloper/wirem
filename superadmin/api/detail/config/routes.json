@@ -24,7 +24,14 @@
         "policies": []
       }
     },
-
+    {
+      "method": "POST",
+      "path": "/details/updateit",
+      "handler": "detail.updateit",
+      "config": {
+        "policies": []
+      }
+    },
     {
       "method": "GET",
       "path": "/details/count",

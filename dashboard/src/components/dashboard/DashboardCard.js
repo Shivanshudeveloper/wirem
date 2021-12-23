@@ -7,9 +7,10 @@ import {
   Grid,
   Typography,
   Alert,
-  AlertTitle
+  AlertTitle, TextField, IconButton, Tooltip
 } from '@material-ui/core';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import ContentCopyIcon from '@material-ui/icons/ContentCopy';
 import { useState, useEffect } from 'react';
 
 const DashboardCard = ({ product, user, ...rest }) => {
@@ -29,7 +30,7 @@ const DashboardCard = ({ product, user, ...rest }) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
         }}
         {...rest}
       >
@@ -116,6 +117,22 @@ const DashboardCard = ({ product, user, ...rest }) => {
             )}
           </Grid>
         </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+          <TextField sx={{ width: '80%' }} disabled value={details.paymentUrl} id="outlined-basic" label="Link" variant="outlined" />
+          <Tooltip title="Copy">
+            <IconButton
+              onClick={() => {
+                navigator.clipboard.writeText(details.paymentUrl);
+              }}
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <ContentCopyIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+
       </Card>
     </>
   );

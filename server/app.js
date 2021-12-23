@@ -16,8 +16,8 @@ app.use(
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post("/geturl", function (req, resp) {
-  var data = req.body;
+app.get("/geturl", function (req, resp) {
+  var  data=req.query;
   var amount = data.amt;
   var name = data.name;
   var emailId = data.emailId;
@@ -114,7 +114,11 @@ app.post("/geturl", function (req, resp) {
     path: "/paynetz/epi/fts?login=" + login + "&encdata=" + encdata,
   };
   url = options["host"] + options["path"];
-  resp.json(url);
+
+  resp.writeHead(301,
+    {Location:url}
+  );
+  resp.end();
 });
 
 app.post("/Response/:strapi", async (req, resp) => {
@@ -145,27 +149,19 @@ app.post("/Response/:strapi", async (req, resp) => {
     data[val[0]] = val[1];
   }
 
-  console.log("Response");
+  console.log(data);
 
   if (data.desc === "SUCCESS") {
     try {
       const res = await axios.post(
-        "http://localhost:1337/details/me",
-        {
-          name: data.udf1,
-          email: data.udf2,
-          productname: data.udf3,
-          otp: Math.floor(100000 + Math.random() * 900000),
-          amount: data.amt,
-          description: data.udf4,
-        },
+        "http://localhost:1337/details/updateit",
         {
           headers: {
             Authorization: `Bearer ${req.params.strapi}`,
           },
         }
       );
-      console.log(res.data);
+      console.log(res);
       resp.redirect("http://localhost:3000");
     } catch (err) {
       console.log(err);

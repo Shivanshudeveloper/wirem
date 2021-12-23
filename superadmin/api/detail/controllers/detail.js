@@ -28,6 +28,19 @@ module.exports = {
         entities = await strapi.query("detail").find({user:user.id });
         return entities.length;
       },
+      async updateit(ctx) {
+        const user = ctx.state.user;
+        if (!user) {
+          return ctx.badRequest(null, [
+            { messages: [{ id: "No authoriztion header was found" }] },
+          ]);
+        }
+        let entity;
+        entity=await strapi.query("detail").update({paymentUrl:user.paymentUrl },{
+          Status:'Delivered'
+        });
+        return sanitizeEntity(entity, { model: strapi.models.detail });
+      },
   async createMe(ctx) {
     let entity;
 
@@ -42,6 +55,7 @@ module.exports = {
     if (ctx.is("multipart")) {
       const { data, files } = parseMultipartData(ctx);
       data['user']=user;
+      console.log(data);
       entity = await strapi.services.detail.create(data, { files });
     } else {
             const data=ctx.request.body;
