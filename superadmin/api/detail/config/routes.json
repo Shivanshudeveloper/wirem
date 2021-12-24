@@ -25,9 +25,9 @@
       }
     },
     {
-      "method": "POST",
-      "path": "/details/updateit",
-      "handler": "detail.updateit",
+      "method": "GET",
+      "path": "/details/otp/:otp",
+      "handler": "detail.findMeByOtp",
       "config": {
         "policies": []
       }
@@ -67,8 +67,8 @@
 
     {
       "method": "PUT",
-      "path": "/details/:id",
-      "handler": "detail.update",
+      "path": "/details/me/:otp",
+      "handler": "detail.updateMe",
       "config": {
         "policies": []
       }

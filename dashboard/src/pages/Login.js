@@ -1,4 +1,4 @@
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 
 const Login = () => {
+  const { search } = useLocation();
   const navigate = useNavigate();
   const [showPopper, setShowPopper] = useState(false);
   const login = (values, { setErrors, setSubmitting }) => {
@@ -40,6 +41,7 @@ const Login = () => {
             } else {
               user.sendEmailVerification();
               setShowPopper(true);
+
               setSubmitting(false);
             }
           }
@@ -59,8 +61,12 @@ const Login = () => {
         if (user.emailVerified) {
           navigate('/app/dashboard', { replace: true });
         } else {
-          user.sendEmailVerification();
-          setShowPopper(true);
+          const verified = new URLSearchParams(search).get('verified');
+          console.log(verified);
+          if (verified === 'false') {
+            user.sendEmailVerification();
+            setShowPopper(true);
+          }
         }
       }
     });

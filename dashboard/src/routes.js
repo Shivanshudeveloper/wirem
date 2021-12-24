@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from './components/DashboardLayout';
 import MainLayout from './components/MainLayout';
+import Main from './Mobile/Pages/Main';
 import Account from './pages/Account';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -31,6 +32,10 @@ const routes = [
       { path: '/', element: <Navigate to="/app/dashboard" /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
+  },
+  {
+    path: '/mobile',
+    element: <Main />,
   }
 ];
 

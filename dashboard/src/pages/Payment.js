@@ -9,14 +9,15 @@ import axios from 'axios';
 const Payment = () => {
   const location = useLocation();
   const payNow = async () => {
-    const paymentUrl = `http://localhost:5000/geturl?amt=${location.state.amount}&name=${location.state.name}&emailId=${location.state.email}&productname=${location.state.productname}&description=${location.state.description}&strapi=${localStorage.getItem('strapi')}`;
+    const ot = Math.floor(100000 + Math.random() * 900000);
+    const paymentUrl = `http://localhost:5000/geturl?amt=${location.state.amount}&name=${location.state.name}&emailId=${location.state.email}&productname=${location.state.productname}&description=${location.state.description}&otp=${ot}`;
     const res = await axios.post(
       'http://localhost:1337/details/me',
       {
         name: location.state.name,
         email: location.state.email,
         productname: location.state.productname,
-        otp: Math.floor(100000 + Math.random() * 900000),
+        otp: ot,
         amount: location.state.amount,
         description: location.state.description,
         paymentUrl

@@ -23,7 +23,6 @@ app.get("/geturl", function (req, resp) {
   var emailId = data.emailId;
   var productname = data.productname;
   var description = data.description;
-  var strapi = data.strapi;
   //    resp.json(amount);
   var login = "9132";
   var pass = "Test@123";
@@ -33,10 +32,10 @@ app.get("/geturl", function (req, resp) {
   var txncur = "INR";
   var custacc = "100000036600";
   var datepick = new Date(); // replace with current date
-  console.log(strapi);
+ 
   var cc = "NAVIN";
   var final = new Buffer(cc).toString("base64"); // clientcode
-  var url = `http://localhost:5000/Response/${strapi}`;
+  var url = `http://localhost:5000/Response/${data.otp}`;
   var udf1 = name;
   var udf2 = emailId;
   var udf3 = productname;
@@ -121,7 +120,7 @@ app.get("/geturl", function (req, resp) {
   resp.end();
 });
 
-app.post("/Response/:strapi", async (req, resp) => {
+app.post("/Response/:otp", async (req, resp) => {
   var res_enc_key = "75AEF0FA1B94B3C10D4F5B268F757F11";
   var res_salt = "75AEF0FA1B94B3C10D4F5B268F757F11";
   const algorithm = "aes-256-cbc";
@@ -149,26 +148,21 @@ app.post("/Response/:strapi", async (req, resp) => {
     data[val[0]] = val[1];
   }
 
-  console.log(data);
 
   if (data.desc === "SUCCESS") {
     try {
-      const res = await axios.post(
-        "http://localhost:1337/details/updateit",
-        {
-          headers: {
-            Authorization: `Bearer ${req.params.strapi}`,
-          },
-        }
+      const res = await axios.put(
+        `http://localhost:1337/details/me/${req.params.otp}`,{
+        Status:"Completed"
+        },
       );
-      console.log(res);
-      resp.redirect("http://localhost:3000");
+      resp.sendFile(__dirname+"/views/index.html");
     } catch (err) {
       console.log(err);
-      resp.redirect("http://localhost:3000");
+      resp.sendFile(__dirname+"/views/index.html");
     }
   } else {
-    resp.redirect("http://localhost:3000");
+    resp.sendFile(__dirname+"/views/index.html");
   }
 });
 

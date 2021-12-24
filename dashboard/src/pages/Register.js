@@ -1,4 +1,5 @@
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -19,7 +20,7 @@ const Register = () => {
 
   const register = (values, { setErrors, setSubmitting }) => {
     const {
-      firstName, lastName, password, email
+      firstName, lastName, password, email, phoneNumber
     } = values;
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -38,10 +39,11 @@ const Register = () => {
           body: JSON.stringify({
             password,
             email,
-            username: name
+            username: name,
+            phoneNumber
           })
         }).then((res) => res.json())
-          .then((res) => { console.log(res); localStorage.setItem('strapi', res.jwt); navigate('/login', { replace: true }); });
+          .then((res) => { console.log(res); localStorage.setItem('strapi', res.jwt); navigate('/login/?verified=false', { replace: true }); });
       })
       .catch((err) => { setSubmitting(false); setErrors({ password: (err.message).replace('Firebase:', '') }); });
   };
@@ -66,6 +68,7 @@ const Register = () => {
               firstName: '',
               lastName: '',
               password: '',
+              phoneNumber: '',
               policy: false
             }}
             validationSchema={Yup.object().shape({
@@ -78,7 +81,8 @@ const Register = () => {
                 .required('First name is required'),
               lastName: Yup.string().max(255).required('Last name is required'),
               password: Yup.string().max(255).required('password is required'),
-              policy: Yup.boolean().oneOf([true], 'This field must be checked')
+              policy: Yup.boolean().oneOf([true], 'This field must be checked'),
+              phoneNumber: Yup.string().max(255).required('password is required'),
             })}
             onSubmit={
               register
@@ -141,6 +145,18 @@ const Register = () => {
                   onChange={handleChange}
                   type="email"
                   value={values.email}
+                  variant="outlined"
+                />
+                <TextField
+                  error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+                  fullWidth
+                  helperText={touched.phoneNumber && errors.phoneNumber}
+                  label="Phone Number"
+                  margin="normal"
+                  name="phoneNumber"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.phoneNumber}
                   variant="outlined"
                 />
                 <TextField

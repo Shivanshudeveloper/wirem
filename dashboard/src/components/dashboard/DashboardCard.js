@@ -112,7 +112,7 @@ const DashboardCard = ({ product, user, ...rest }) => {
               </Alert>
             ) : (
               <Alert severity="info">
-                <AlertTitle>Pending</AlertTitle>
+                <AlertTitle>{details.Status}</AlertTitle>
               </Alert>
             )}
           </Grid>

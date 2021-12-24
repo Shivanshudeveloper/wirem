@@ -28,17 +28,25 @@ module.exports = {
         entities = await strapi.query("detail").find({user:user.id });
         return entities.length;
       },
-      async updateit(ctx) {
-        const user = ctx.state.user;
-        if (!user) {
-          return ctx.badRequest(null, [
-            { messages: [{ id: "No authoriztion header was found" }] },
-          ]);
+      async updateMe(ctx) {
+        let entity ;
+        
+        if (ctx.is("multipart")) {
+          const { data, files } = parseMultipartData(ctx);
+           entity = await strapi.services.detail.update({otp:ctx.params.otp},data, { files });
+        } else {
+                const data=ctx.request.body;
+          entity = await strapi.services.detail.update({otp:ctx.params.otp},data);
         }
-        let entity;
-        entity=await strapi.query("detail").update({paymentUrl:user.paymentUrl },{
-          Status:'Delivered'
-        });
+        return sanitizeEntity(entity, { model: strapi.models.detail });
+      },
+      async findMeByOtp(ctx) {
+        let entity ;
+        if (ctx.is("multipart")) {
+           entity = await strapi.query("detail").find({otp:ctx.params.otp});
+        } else {
+          entity = await strapi.query("detail").find({otp:ctx.params.otp});
+        }
         return sanitizeEntity(entity, { model: strapi.models.detail });
       },
   async createMe(ctx) {
