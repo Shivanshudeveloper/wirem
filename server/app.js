@@ -113,7 +113,7 @@ app.get("/geturl", function (req, resp) {
     path: "/paynetz/epi/fts?login=" + login + "&encdata=" + encdata,
   };
   url = options["host"] + options["path"];
-
+  console.log(url);
   resp.writeHead(301,
     {Location:url}
   );
